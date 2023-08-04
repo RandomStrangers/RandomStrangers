@@ -5,7 +5,7 @@ RandomStrangers is a fully featured and customizable **ClassiCube Server Softwar
 Download the latest RandomStrangers release [from here](https://github.com/RandomStrangers/RandomStrangers/tree/master/Uploads)
 * Linux/macOS: You need to install the [Mono framework](https://www.mono-project.com).
 
-Run **MCGalaxy.exe** for a graphical interface, or run **MCGalaxyCLI.exe** for command line only.
+Run **RandomStrangers.exe** for a graphical interface, or run **RandomStrangersCLI.exe** for command line only.
 
 Joining your server
 -----------------
