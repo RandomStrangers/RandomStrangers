@@ -3,6 +3,7 @@ RandomStrangers is a fully featured and customizable **ClassiCube Server Softwar
 **Setup**
 -----------------
 Download the latest RandomStrangers release [from here](https://github.com/RandomStrangers/RandomStrangers/tree/master/Uploads)
+* Windows: You will need to install Net Framework 4.8 (Most already have this built-in)
 * Linux/macOS: You need to install the [Mono framework](https://www.mono-project.com).
 
 Run **RandomStrangers.exe** for a graphical interface, or run **RandomStrangersCLI.exe** for command line only.
