@@ -11,7 +11,7 @@ Run **RandomStrangers.exe** for a graphical interface, or run **RandomStrangersC
 Joining your server
 -----------------
 
-If you are signed in to classicube.net, you can copy the URL sent straight into your web browser and start playing.
+If you are signed in to classicube.net, you can copy the URL sent using /url and paste that straight into your web browser and start playing.
 
 #### Joining from the ClassiCube client
 Click **Direct connect** at the main menu.
