@@ -89,6 +89,7 @@ namespace RandomStrangers
             } else if (clone != null) {
                 Leave(null, "Already logged in!", true); return;
             }
+            LoadCpeData();
 
             SendRawMap(null, level);
             if (Socket.Disconnected) return;
@@ -106,7 +107,7 @@ namespace RandomStrangers
             PlayerDB.LoadNick(this);
             Game.Team = Team.TeamIn(this);
             SetPrefix();
-            LoadCpeData();
+
             
             if (Server.noEmotes.Contains(name)) { parseEmotes = !Server.Config.ParseEmotes; }
 
@@ -192,6 +193,7 @@ namespace RandomStrangers
             }
             return 1;
         }
+        /*
         
         void LoadCpeData() {
             string skin = Server.skins.FindData(name);
@@ -216,8 +218,35 @@ namespace RandomStrangers
                 Rot = rot;
             }            
             SetModel(Model);
+        }*/
+        void LoadCpeData()
+        {
+            string skin = Server.skins.FindData(name);
+            if (skin != null) SkinName = skin;
+            string model = Server.models.FindData(name);
+            if (model != null) Model = model;
+
+            string modelScales = Server.modelScales.FindData(name);
+            if (modelScales != null)
+            {
+                string[] bits = modelScales.SplitSpaces(3);
+                Utils.TryParseSingle(bits[0], out ScaleX);
+                Utils.TryParseSingle(bits[1], out ScaleY);
+                Utils.TryParseSingle(bits[2], out ScaleZ);
+            }
+
+            string rotations = Server.rotations.FindData(name);
+            if (rotations != null)
+            {
+                string[] bits = rotations.SplitSpaces(2);
+                Orientation rot = Rot;
+                byte.TryParse(bits[0], out rot.RotX);
+                byte.TryParse(bits[1], out rot.RotZ);
+                Rot = rot;
+            }
+            SetModel(Model);
         }
-        
+
         void GetPlayerStats() {
             object raw = Database.ReadRows("Players", "*", null, PlayerData.Read,
                                            "WHERE Name=@0", name);

@@ -57,7 +57,7 @@ namespace RandomStrangers
         
         
         string lastUrl = "";
-        public void SendCurrentTextures() {
+        /*public void SendCurrentTextures() {
             Zone zone = ZoneIn;
             int cloudsHeight = CurrentEnvProp(EnvProp.CloudsLevel, zone);
             int edgeHeight   = CurrentEnvProp(EnvProp.EdgeLevel,   zone);
@@ -83,7 +83,7 @@ namespace RandomStrangers
                 Send(Packet.MapAppearance(url, side, edge, edgeHeight, hasCP437));
             }
         }
-
+        */
         [Obsolete("Use Session.SendSetEnvColor instead", true)]
         public void SendEnvColor(byte type, string hex) {
             Session.SendSetEnvColor(type, hex);
