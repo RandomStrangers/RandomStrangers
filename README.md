@@ -3,14 +3,15 @@ RandomStrangers is a fully featured and customizable **ClassiCube Server Softwar
 **Setup**
 -----------------
 Download the latest RandomStrangers release [from here](https://github.com/RandomStrangers/RandomStrangers/tree/master/Uploads)
+* Windows: You will need to install Net Framework 4.8 (Most already have this built-in)
 * Linux/macOS: You need to install the [Mono framework](https://www.mono-project.com).
 
-Run **MCGalaxy.exe** for a graphical interface, or run **MCGalaxyCLI.exe** for command line only.
+Run **RandomStrangers.exe** for a graphical interface, or run **RandomStrangersCLI.exe** for command line only.
 
 Joining your server
 -----------------
 
-If you are signed in to classicube.net, you can copy the URL sent straight into your web browser and start playing.
+If you are signed in to classicube.net, you can copy the URL sent using /URL straight into your web browser and start playing.
 
 #### Joining from the ClassiCube client
 Click **Direct connect** at the main menu.
