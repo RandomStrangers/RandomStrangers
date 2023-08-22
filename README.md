@@ -1,4 +1,4 @@
-RandomStrangers is a fully featured and customizable **ClassiCube Server Software** based on SuperNova 9.5.4.7, which is based on MCGalaxy 1.9.3.9.
+RandomStrangers is a fully featured and customizable **ClassiCube Server Software** based on [SuperNova](https://github.com/RandomStrangers/SuperNova), which is based on [MCGalaxy 1.9.3.9](https://github.com/UnknownShadow200/MCGalaxy/tree/1.9.3.9).
 
 **Setup**
 -----------------
