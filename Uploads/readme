@@ -2,3 +2,4 @@ These are the current files for RandomStrangers.
 RandomStrangers_Core is a form of RandomStrangers that renames all console references to RandomStrangers, and adds a custom instance of the previous console state.
 NOTE: FOR RandomStrangers_Core YOU WILL HAVE TO DOWNLOAD RandomStrangersCLI_Core AND RandomStrangers_CoreGUI AS WELL SINCE ALL CONSOLE STATES WILL BE CHANGED!
 All versions come with TEN_BIT_BLOCKS built-in, so no infid dll will be provided.
+However, should you want a version without INFID, please let us know!

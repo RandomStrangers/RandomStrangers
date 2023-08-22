@@ -161,8 +161,6 @@ namespace RandomStrangers {
             EnsureDirectoryExists(IScripting.DllDir);
             EnsureDirectoryExists(ICompiler.SourceDir);
             EnsureDirectoryExists("text/discord"); // TODO move to discord plugin
-            EnsureDirectoryExists("text/discord1"); // TODO move to discord plugin1
-            EnsureDirectoryExists("text/discord2"); // TODO move to discord plugin2
             EnsureDirectoryExists("globalchat/"); // TODO move to globalchat plugins
         }
         
@@ -218,7 +216,13 @@ namespace RandomStrangers {
                 if (Plugin.core.Contains(p)) continue;
                 Plugin.Load(p, false);
             }
-            
+            // Unload custom simple plugins
+            List<Plugin_Simple> plugins2 = new List<Plugin_Simple>(Plugin_Simple.all);
+            foreach (Plugin_Simple p2 in plugins2)
+            {
+                if (Plugin_Simple.core.Contains(p2)) continue;
+                Plugin_Simple.Unload(p2, false);
+            }
             OnConfigUpdatedEvent.Call();
         }
         

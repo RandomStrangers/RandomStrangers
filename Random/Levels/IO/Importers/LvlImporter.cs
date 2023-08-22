@@ -29,7 +29,7 @@ namespace RandomStrangers.Levels.IO
     {
         public override string Extension { get { return ".lvl"; } }
         public override string Description { get { return "MCDzienny/MCForge/MCGalaxy/" +
-                    "SuperNova/DeadNova/RelaySoftware/RandomStrangers map"; } }
+                    "SuperNova/RandomStrangers/RelaySoftware/RandomStrangers map"; } }
         const int HEADER_SIZE = 18;
         
         public override Vec3U16 ReadDimensions(Stream src) {
