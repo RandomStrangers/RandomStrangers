@@ -1,7 +1,7 @@
 ﻿/*
-    Copyright 2010 MCLawl Team - Written by Valek (Modified by RandomStrangers)
+    Copyright 2010 MCLawl Team - Written by Valek (Modified by DeadNova)
 
-    Edited for use with RandomStrangers
+    Edited for use with DeadNova
  
     Dual-licensed under the Educational Community License, Version 2.0 and
     the GNU General Public License, Version 3 (the "Licenses"); you may
@@ -17,7 +17,6 @@
     or implied. See the Licenses for the specific language governing
     permissions and limitations under the Licenses.
  */
-using RandomStrangers;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace RandomStrangers.Scripting
     {
 
         /// <summary> Returns the default .dll path for the plugin with the given name </summary>
-        public static string SimplePluginPath(string name) { return "" + name + ".dll"; }
+        public static string SimplePluginPath(string name) { return Directory.GetCurrentDirectory() + name + ".dll"; }
 
         /// <summary> Constructs instances of all types which derive from T in the given assembly. </summary>
         /// <returns> The list of constructed instances. </returns>
@@ -93,7 +92,7 @@ namespace RandomStrangers.Scripting
 
         public static void AutoloadSimplePlugins()
         {
-            string[] files = AtomicIO.TryGetFiles("", "*.dll");
+            string[] files = AtomicIO.TryGetFiles(Directory.GetCurrentDirectory(), "*.dll");
 
             if (files != null)
             {
@@ -101,7 +100,7 @@ namespace RandomStrangers.Scripting
             }
             else
             {
-                Directory.CreateDirectory("");
+                Directory.CreateDirectory(Directory.GetCurrentDirectory());
             }
         }
 
@@ -111,7 +110,7 @@ namespace RandomStrangers.Scripting
             try
             {
                 Assembly lib = LoadAssembly(path);
-                List<Plugin_Simple> plugins = LoadTypes<Plugin_Simple>(lib);
+                List<Plugin_Simple> plugins = IScripting_Simple.LoadTypes<Plugin_Simple>(lib);
 
                 foreach (Plugin_Simple plugin in plugins)
                 {
@@ -130,7 +129,7 @@ namespace RandomStrangers.Scripting
     /// <summary> Compiles source code files for a particular programming language into a .dll </summary>
     public abstract class ICompiler_Simple
     {
-        public const string ErrorPath = "logs/errors/compiler_simple.log";
+        public const string ErrorPath = "logs/errors/compiler.log";
 
         /// <summary> Default file extension used for source code files </summary>
         /// <example> .cs, .vb </example>
@@ -144,7 +143,7 @@ namespace RandomStrangers.Scripting
         /// <summary> Returns source code for an example Plugin </summary>
         public abstract string SimplePluginSkeleton { get; }
 
-        public string SimplePluginPath(string name) { return "" + name + FileExtension; }
+        public string SimplePluginPath(string name) { return Directory.GetCurrentDirectory() + name + FileExtension; }
 
         /// <summary> C# compiler instance. </summary>
         public static ICompiler_Simple CS = new CSCompiler_Simple();
@@ -297,7 +296,8 @@ namespace RandomStrangers.Scripting
                 AddReferences(path, args);
                 srcPaths[i] = path;
             }
-            args.ReferencedAssemblies.Add("RandomStrangers_.dll");
+            args.ReferencedAssemblies.Add(Server.GetServerDLLPath());
+
 
             PrepareArgs(args);
             InitCompiler();

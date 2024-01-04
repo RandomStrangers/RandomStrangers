@@ -45,7 +45,8 @@ namespace RandomStrangers {
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
         
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
-        public const string InternalVersion = "10.0.4";
+        public const string InternalVersion = "10.0.7";
+        // Keep version up-to-date with https://github.com/RandomStrangers/RSCore
         public static string Version { get { return InternalVersion; } }
 #if DEV_BUILD_RS
         public static string SoftwareName = "Random Strangers Core";
@@ -71,8 +72,12 @@ namespace RandomStrangers {
         public static PlayerList ignored, hidden, agreed, vip, noEmotes, lockdown;
         public static PlayerExtList models, skins, reach, rotations, modelScales;
         public static PlayerExtList frozen, muted, tempBans, tempRanks;
-        
-        public static readonly List<string> Devs = new List<string>() { "Hetal", "UclCommander", "RandomStranger05", "sethbatman05" };
+
+        public static readonly List<string> Devs = new List<string>() {
+            "DarkBurningFlame", "BurningFlame", "SuperNova", "DeadNova",
+            "HyperNova", "RandomStranger05", "GoldenSparks", "AurumStellae",
+            "sethbatman05", "sethbatman2005", "jackstage1", "Pattykaki45",
+            "jaketheidiot", "RandomStrangers", "ArgenteaeLunae", "Argenteae"}; 
         public static readonly List<string> Opstats = new List<string>() { "ban", "tempban", "xban", "banip", "kick", "warn", "mute", "freeze", "setrank" };
 
         public static Level mainLevel;
@@ -88,7 +93,7 @@ namespace RandomStrangers {
         
         public static int YesVotes, NoVotes;
         public static bool voting;
-        public const int MAX_PLAYERS = 1024;
+        public const int MAX_PLAYERS = int.MaxValue;
         
         public static Scheduler MainScheduler = new Scheduler("RS_MainScheduler");
         public static Scheduler Background = new Scheduler("RS_BackgroundScheduler");

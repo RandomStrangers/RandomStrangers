@@ -1,5 +1,5 @@
 /*
-    Copyright 2010 MCSharp team (Modified for use with MCZall/MCLawl/RandomStrangers)
+    Copyright 2010 MCSharp team (Modified for use with MCZall/MCLawl/DeadNova)
     
     Dual-licensed under the Educational Community License, Version 2.0 and
     the GNU General Public License, Version 3 (the "Licenses"); you may
@@ -18,10 +18,11 @@
 using System;
 using System.Collections.Generic;
 using RandomStrangers.Scripting;
+using RandomStrangers;
 
 namespace RandomStrangers
 {
-    /// <summary> This class provides for simple modification to RandomStrangers </summary>
+    /// <summary> This class provides for more advanced modification to DeadNova </summary>
     public abstract class Plugin_Simple
     {
         /// <summary> Hooks into events and initalises states/resources etc </summary>
@@ -43,6 +44,10 @@ namespace RandomStrangers
         public abstract string name { get; }
         /// <summary> Oldest version of RandomStrangers this plugin is compatible with. </summary>
         public abstract string RandomStrangers_Version { get; }
+        /// <summary> Version of this plugin. </summary>
+        public virtual int build { get { return 0; } }
+        /// <summary> Message to display once this plugin is loaded. </summary>
+        public virtual string welcome { get { return ""; } }
         /// <summary> The creator/author of this plugin. (Your name) </summary>
         public virtual string creator { get { return ""; } }
         /// <summary> Whether or not to auto load this plugin on server startup. </summary>
@@ -67,13 +72,14 @@ namespace RandomStrangers
                 if (p.LoadAtStartup || !auto)
                 {
                     p.Load(auto);
-                    //Logger.Log(LogType.SystemActivity, "Simple plugin {0} loaded...build: 1", p.name);
+                    Logger.Log(LogType.SystemActivity, "Simple plugin {0} loaded...build: {1}", p.name, p.build);
                 }
                 else
                 {
                     Logger.Log(LogType.SystemActivity, "Simple plugin {0} was not loaded, you can load it with /pload", p.name);
                 }
 
+                if (!string.IsNullOrEmpty(p.welcome)) Logger.Log(LogType.SystemActivity, p.welcome);
                 return true;
             }
             catch (Exception ex)
@@ -111,8 +117,15 @@ namespace RandomStrangers
         }
         public static void LoadAll()
         {
-           // LoadCorePlugin(new CorePlugin());
+            // LoadCorePlugin(new CorePlugin());
             IScripting_Simple.AutoloadSimplePlugins();
+        }
+
+        static void LoadCorePlugin(Plugin_Simple plugin)
+        {
+            plugin.Load(true);
+            all.Add(plugin);
+            core.Add(plugin);
         }
     }
 }

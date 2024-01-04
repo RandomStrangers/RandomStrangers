@@ -1,0 +1,45 @@
+name: Build latest
+on: [push]
+
+concurrency:
+  group: ${{ github.ref }}-latest
+  cancel-in-progress: true
+
+jobs:
+  build-mono:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Compile RandomStrangers using mono
+        shell: bash
+        id: compile
+        run: |
+          msbuild RandomStrangers.sln /p:Configuration=Release
+          cp -R bin/Release bin/Release_normal
+          rm bin/Release/RandomStrangers_.dll bin/Release/RandomStrangers_.pdb
+          msbuild Random/RandomStrangers_.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
+          msbuild GUIRandomStrangersGUI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
+          msbuild CLI/RandomStrangersCLI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
+
+      - uses: ./.github/actions/notify_failure
+        if: ${{ always() && steps.compile.outcome == 'failure' }}
+        with:
+          NOTIFY_MESSAGE: 'Failed to compile RandomStrangers .NET build! <@999409543001931788>'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'
+          
+      - uses: ./.github/actions/notify_success
+        if: ${{ always() && steps.compile.outcome == 'success' }}
+        with:
+          SOURCE_FILE: 'bin/Release_normal'
+          DEST_NAME: 'RandomStrangers'
+          NOTIFY_MESSAGE: 'Successfully compiled RandomStrangers .NET build.'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'
+          
+      - uses: ./.github/actions/notify_success
+        if: ${{ always() && steps.compile.outcome == 'success' }}
+        with:
+          SOURCE_FILE: 'bin/Release'
+          DEST_NAME: 'RandomStrangers-Core'
+          NOTIFY_MESSAGE: 'Successfully compiled RandomStrangers .NET Core build.'
+          WEBHOOK_URL: '${{ secrets.WEBHOOK_URL }}'

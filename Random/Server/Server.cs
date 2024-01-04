@@ -182,7 +182,13 @@ namespace RandomStrangers {
                 if (Plugin.core.Contains(p)) continue;
                 Plugin.Unload(p, false);
             }
-            
+            // Unload custom simple plugins
+            List<Plugin_Simple> simpleplugins = new List<Plugin_Simple>(Plugin_Simple.all);
+            foreach (Plugin_Simple ps in simpleplugins)
+            {
+                if (Plugin_Simple.core.Contains(ps)) continue;
+                Plugin_Simple.Unload(ps, false);
+            }
             ZSGame.Instance.infectMessages = ZSConfig.LoadInfectMessages();
             Colors.Load();
             Alias.Load();
@@ -216,12 +222,11 @@ namespace RandomStrangers {
                 if (Plugin.core.Contains(p)) continue;
                 Plugin.Load(p, false);
             }
-            // Unload custom simple plugins
-            List<Plugin_Simple> plugins2 = new List<Plugin_Simple>(Plugin_Simple.all);
-            foreach (Plugin_Simple p2 in plugins2)
+            // Reload custom plugins
+            foreach (Plugin_Simple ps in simpleplugins)
             {
-                if (Plugin_Simple.core.Contains(p2)) continue;
-                Plugin_Simple.Unload(p2, false);
+                if (Plugin_Simple.core.Contains(ps)) continue;
+                Plugin_Simple.Load(ps, false);
             }
             OnConfigUpdatedEvent.Call();
         }
