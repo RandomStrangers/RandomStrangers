@@ -19,7 +19,7 @@ jobs:
           cp -R bin/Release bin/Release_normal
           rm bin/Release/RandomStrangers_.dll bin/Release/RandomStrangers_.pdb
           msbuild Random/RandomStrangers_.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
-          msbuild GUIRandomStrangersGUI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
+          msbuild GUI/RandomStrangersGUI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
           msbuild CLI/RandomStrangersCLI.csproj /p:Configuration=Release /t:Rebuild /p:DefineConstants="DEV_BUILD_RS"
 
       - uses: ./.github/actions/notify_failure
