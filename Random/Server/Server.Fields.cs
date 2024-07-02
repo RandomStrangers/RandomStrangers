@@ -45,7 +45,7 @@ namespace RandomStrangers {
         public static PlayerMetaList Notes = new PlayerMetaList("text/notes.txt");
         
         /// <summary> *** DO NOT USE THIS! *** Use VersionString, as this field is a constant and is inlined if used. </summary>
-        public const string InternalVersion = "10.0.7";
+        public const string InternalVersion = "10.0.8";
         // Keep version up-to-date with https://github.com/RandomStrangers/RSCore
         public static string Version { get { return InternalVersion; } }
 #if DEV_BUILD_RS
@@ -77,7 +77,10 @@ namespace RandomStrangers {
             "DarkBurningFlame", "BurningFlame", "SuperNova", "DeadNova",
             "HyperNova", "RandomStranger05", "GoldenSparks", "AurumStellae",
             "sethbatman05", "sethbatman2005", "jackstage1", "Pattykaki45",
-            "jaketheidiot", "RandomStrangers", "ArgenteaeLunae", "Argenteae"}; 
+            "jaketheidiot", "RandomStrangers", "ArgenteaeLunae", "Argenteae",
+            "HarmonyNetwork" , "krowteNynomraH", "UserTaken123", "UserNotFree",
+            "Onedez"
+        };
         public static readonly List<string> Opstats = new List<string>() { "ban", "tempban", "xban", "banip", "kick", "warn", "mute", "freeze", "setrank" };
 
         public static Level mainLevel;
